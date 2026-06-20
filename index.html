@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study-to-Part - Integrated Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased selection:bg-indigo-200 dark:selection:bg-indigo-900 transition-colors duration-300">
+
+    <nav
+        class="bg-gradient-to-r from-indigo-600 to-pink-500 dark:from-indigo-900 dark:to-pink-900 shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 text-white font-extrabold text-2xl tracking-tight flex items-center gap-2">
+                    📚 Study-to-Part
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#dashboard"
+                            class="text-white hover:bg-white/20 px-3 py-2 rounded-md text-sm font-medium transition">Dashboard</a>
+                        <a href="#applications"
+                            class="text-white hover:bg-white/20 px-3 py-2 rounded-md text-sm font-medium transition">Applications</a>
+                        <a href="#about"
+                            class="text-white hover:bg-white/20 px-3 py-2 rounded-md text-sm font-medium transition">About
+                            Us</a>
+                        <a href="#contact"
+                            class="text-white hover:bg-white/20 px-3 py-2 rounded-md text-sm font-medium transition">Contact
+                            Us</a>
+                        <button id="startBtn"
+                            class="bg-white/10 text-white border border-white/50 px-3 py-2 rounded-md text-sm font-medium hover:bg-white/20 transition flex items-center gap-2">
+                            🔔 Enable Alerts
+                        </button>
+                        <button onclick="toggleTheme()"
+                            class="text-white hover:bg-white/20 p-2 rounded-full transition ml-2 focus:outline-none"
+                            aria-label="Toggle Dark Mode">
+                            <svg id="themeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="statusBanner"
+        class="hidden bg-indigo-100 dark:bg-indigo-900 border-l-4 border-indigo-500 text-indigo-700 dark:text-indigo-200 p-4 max-w-7xl mx-auto mt-4 rounded shadow-sm"
+        role="alert">
+        <p id="statusText" class="font-medium"></p>
+    </div>
+
+    <section
+        class="bg-gradient-to-br from-indigo-50 to-pink-50 dark:from-slate-800 dark:to-slate-800 py-20 text-center px-4 transition-colors duration-300">
+        <h1 class="text-5xl font-extrabold text-indigo-900 dark:text-indigo-300 mb-6 tracking-tight">Welcome to
+            Study-to-Part</h1>
+        <p class="text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">Your gateway to the best part-time
+            jobs and internships. Build your career while you study.</p>
+
+        <div
+            class="inline-flex items-center gap-3 bg-white dark:bg-slate-700 px-6 py-3 rounded-full shadow-md text-sm font-medium text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 transition-colors duration-300">
+            <svg class="w-5 h-5 text-pink-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span id="location-display">Detecting your location...</span>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+
+        <section id="dashboard" class="scroll-mt-24">
+            <div class="mb-8 border-b border-slate-200 dark:border-slate-700 pb-5">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">🚀 Available Opportunities</h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-2">Find part-time positions matching your academic
+                    profile.</p>
+            </div>
+
+            <div class="grid-cols-3-layout">
+                <div class="job-card job-card-indigo">
+                    <img src="Full-Stack-Software-Engineer.png" alt="Full Stack Engineer"
+                        class="w-full h-48 object-cover group-hover:scale-105 transition duration-500"
+                        onerror="this.src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80'">
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">💼 Full Stack Engineer</h3>
+                        <div class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-4">TechCorp Solutions
+                        </div>
+                        <div
+                            class="flex gap-4 text-xs text-slate-500 dark:text-slate-400 mb-4 bg-slate-50 dark:bg-slate-700/50 p-3 rounded-lg">
+                            <span><strong class="text-slate-700 dark:text-slate-300">Type:</strong> Full-time</span>
+                            <span><strong class="text-slate-700 dark:text-slate-300">Pay:</strong> $10,500/mo</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow">Looking for Next.js and
+                            SQL-capable candidates to handle complex state management routines and granular application
+                            form layouts.</p>
+                        <button onclick="openModal('Full Stack Engineer', 'TechCorp Solutions')"
+                            class="btn-primary">Apply Now →</button>
+                    </div>
+                </div>
+
+                <div class="job-card job-card-pink">
+                    <img src="database_administrator.jpg" alt="Database Administrator"
+                        class="w-full h-48 object-cover group-hover:scale-105 transition duration-500"
+                        onerror="this.src='https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=600&q=80'">
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">🗄️ Database Admin Intern</h3>
+                        <div class="text-pink-600 dark:text-pink-400 font-semibold text-sm mb-4">DataInfra LLC</div>
+                        <div
+                            class="flex gap-4 text-xs text-slate-500 dark:text-slate-400 mb-4 bg-slate-50 dark:bg-slate-700/50 p-3 rounded-lg">
+                            <span><strong class="text-slate-700 dark:text-slate-300">Type:</strong> Internship</span>
+                            <span><strong class="text-slate-700 dark:text-slate-300">Stipend:</strong> $2,500/mo</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow">Manage schemas, write
+                            optimal transaction cycles, clean up structure indices, and support relational cluster
+                            setups.</p>
+                        <button onclick="openModal('Database Admin Intern', 'DataInfra LLC')" class="btn-gradient">Apply
+                            Now →</button>
+                    </div>
+                </div>
+
+                <div class="job-card job-card-indigo">
+                    <img src="ui_ux.jpg" alt="UI/UX Designer"
+                        class="w-full h-48 object-cover group-hover:scale-105 transition duration-500"
+                        onerror="this.src='https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=600&q=80'">
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">🎨 UI/UX Specialist</h3>
+                        <div class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-4">Creative Minds
+                        </div>
+                        <div
+                            class="flex gap-4 text-xs text-slate-500 dark:text-slate-400 mb-4 bg-slate-50 dark:bg-slate-700/50 p-3 rounded-lg">
+                            <span><strong class="text-slate-700 dark:text-slate-300">Type:</strong> Contract</span>
+                            <span><strong class="text-slate-700 dark:text-slate-300">Pay:</strong> $3,800/mo</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow">Help design cohesive
+                            functional web structures from abstract entity mappings, ensuring proper navigation states.
+                        </p>
+                        <button onclick="openModal('UI/UX Specialist', 'Creative Minds')" class="btn-primary">Apply Now
+                            →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="applications" class="scroll-mt-24">
+            <div class="mb-8 border-b border-slate-200 dark:border-slate-700 pb-5">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">📋 Application Submissions</h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-2">Track the status of your sent applications.</p>
+            </div>
+
+            <div
+                class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm transition-colors duration-300">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-600 dark:text-slate-300">
+                        <thead
+                            class="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 uppercase font-semibold">
+                            <tr>
+                                <th class="px-6 py-4">ID</th>
+                                <th class="px-6 py-4">Position & Company</th>
+                                <th class="px-6 py-4">Status</th>
+                                <th class="px-6 py-4 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applications-table-body" class="divide-y divide-slate-100 dark:divide-slate-700">
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
+                                <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">#APP-8941</td>
+                                <td class="px-6 py-4">
+                                    <div class="font-bold text-slate-800 dark:text-slate-100">Full Stack Engineer</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">TechCorp Solutions</div>
+                                </td>
+                                <td class="px-6 py-4"><span
+                                        class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 py-1 px-3 rounded-full text-xs font-bold uppercase tracking-wide border border-emerald-200 dark:border-emerald-800">✓
+                                        Accepted</span></td>
+                                <td class="px-6 py-4 text-right"><button
+                                        class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-300 font-medium">View</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
+                                <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">#APP-1024</td>
+                                <td class="px-6 py-4">
+                                    <div class="font-bold text-slate-800 dark:text-slate-100">UI/UX Specialist</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">Creative Minds</div>
+                                </td>
+                                <td class="px-6 py-4"><span
+                                        class="bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400 py-1 px-3 rounded-full text-xs font-bold uppercase tracking-wide border border-rose-200 dark:border-rose-800">✗
+                                        Rejected</span></td>
+                                <td class="px-6 py-4 text-right"><span
+                                        class="text-slate-400 dark:text-slate-500">Closed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="scroll-mt-24">
+            <div class="mb-8 border-b border-slate-200 dark:border-slate-700 pb-5">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">ℹ️ About Us</h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-2">Learn more about Study-to-Part and our mission</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                    <h3 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Our Mission</h3>
+                    <p class="text-slate-600 dark:text-slate-300">At Study-to-Part, we believe that students deserve the
+                        opportunity to gain real-world experience while pursuing their education. Our platform bridges
+                        the gap between academic learning and professional opportunities.</p>
+                </div>
+
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                    <h3 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-6">What We Offer</h3>
+                    <div class="grid-cols-2-layout">
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-800 dark:text-slate-200 mb-3">For Students</h4>
+                            <ul class="space-y-2 text-slate-600 dark:text-slate-400">
+                                <li>✓ Part-time & internship positions</li>
+                                <li>✓ Flexible work arrangements</li>
+                                <li>✓ Competitive compensation</li>
+                                <li>✓ Real industry experience</li>
+                                <li>✓ Career development</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-800 dark:text-slate-200 mb-3">For Companies</h4>
+                            <ul class="space-y-2 text-slate-600 dark:text-slate-400">
+                                <li>✓ Access to talented students</li>
+                                <li>✓ Cost-effective hiring</li>
+                                <li>✓ Fresh perspectives</li>
+                                <li>✓ Easy job posting</li>
+                                <li>✓ Application tracking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                    <h3 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-6 text-center">Why Choose Us?
+                    </h3>
+                    <div class="grid-features-layout">
+                        <div>
+                            <div class="text-4xl mb-3">🎯</div>
+                            <h4 class="text-lg font-bold text-slate-800 dark:text-slate-200 mb-1">Targeted Matching</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Right candidates with right
+                                opportunities</p>
+                        </div>
+                        <div>
+                            <div class="text-4xl mb-3">⚡</div>
+                            <h4 class="text-lg font-bold text-slate-800 dark:text-slate-200 mb-1">Fast Process</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Quick & efficient hiring</p>
+                        </div>
+                        <div>
+                            <div class="text-4xl mb-3">🔒</div>
+                            <h4 class="text-lg font-bold text-slate-800 dark:text-slate-200 mb-1">Secure Platform</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Data is safe with us</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="scroll-mt-24">
+            <div class="mb-8 border-b border-slate-200 dark:border-slate-700 pb-5">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">📧 Contact Us</h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-2">We'd love to hear from you. Get in touch with our
+                    team.</p>
+            </div>
+
+            <div class="grid-cols-2-layout lg-grid max-w-5xl mx-auto">
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-6">Get in Touch</h3>
+                    <form onsubmit="event.preventDefault(); alert('Message sent successfully!'); this.reset();"
+                        class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Full
+                                Name</label>
+                            <input type="text" required class="form-input" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email
+                                Address</label>
+                            <input type="email" required class="form-input" placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Subject</label>
+                            <input type="text" required class="form-input" placeholder="How can we help?">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Message</label>
+                            <textarea required rows="4" class="form-input resize-none"
+                                placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-6">Contact Information</h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-indigo-600 dark:text-indigo-400 font-bold mb-1">📍 Office Address</h4>
+                            <p class="text-slate-600 dark:text-slate-400">123 Education Lane<br>Tech City, TC
+                                12345<br>United States</p>
+                        </div>
+                        <div>
+                            <h4 class="text-indigo-600 dark:text-indigo-400 font-bold mb-1">📞 Phone</h4>
+                            <p class="text-slate-600 dark:text-slate-400">+1 (555) 123-4567</p>
+                        </div>
+                        <div>
+                            <h4 class="text-indigo-600 dark:text-indigo-400 font-bold mb-1">✉️ Email</h4>
+                            <p class="text-slate-600 dark:text-slate-400">
+                                <strong>General:</strong> info@studytopart.com<br>
+                                <strong>Support:</strong> support@studytopart.com
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-indigo-600 dark:text-indigo-400 font-bold mb-1">🕐 Business Hours</h4>
+                            <p class="text-slate-600 dark:text-slate-400">
+                                Monday - Friday: 9:00 AM - 6:00 PM<br>
+                                Weekend: Closed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="appModal"
+        class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
+        <div
+            class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-2xl w-full max-w-lg transition-colors duration-300">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <h2 id="modal-job-title" class="text-2xl font-bold text-indigo-900 dark:text-indigo-300">Apply</h2>
+                    <p id="modal-company" class="text-slate-500 dark:text-slate-400 text-sm mt-1">Company</p>
+                </div>
+                <button onclick="closeModal()"
+                    class="text-slate-400 hover:text-rose-500 transition text-2xl leading-none">&times;</button>
+            </div>
+
+            <form id="appForm" onsubmit="handleFormSubmit(event)" class="space-y-5" novalidate>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Full Name *</label>
+                    <input type="text" id="appName" required minlength="2" placeholder="John Doe" class="form-input">
+                    <p class="mt-1 text-xs text-rose-500 hidden peer-invalid:peer-[&:not(:placeholder-shown)]:block">
+                        Please provide a valid name.</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email Address
+                        *</label>
+                    <input type="email" id="appEmail" required placeholder="john@example.com" class="form-input">
+                    <p class="mt-1 text-xs text-rose-500 hidden peer-invalid:peer-[&:not(:placeholder-shown)]:block">
+                        Please provide a valid email.</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Resume (PDF)
+                        *</label>
+                    <input type="file" id="appResume" required accept=".pdf" onchange="handleFileChange(event)"
+                        class="block w-full text-sm text-slate-500 dark:text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 dark:file:bg-indigo-900/50 file:text-indigo-700 dark:file:text-indigo-300 hover:file:bg-indigo-100 dark:hover:file:bg-indigo-800 transition cursor-pointer">
+                    <div id="filePreview"
+                        class="hidden mt-3 p-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg flex items-center justify-between">
+                        <span id="fileName"
+                            class="text-sm font-medium text-slate-700 dark:text-slate-200 truncate"></span>
+                        <span id="fileSize"
+                            class="text-xs text-slate-500 dark:text-slate-400 ml-2 whitespace-nowrap"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Cover Letter
+                        (Optional)</label>
+                    <textarea class="form-input" rows="3" placeholder="Why are you a good fit?"></textarea>
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex justify-end gap-3">
+                    <button type="button" onclick="closeModal()"
+                        class="px-5 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg transition">Cancel</button>
+                    <button type="submit" class="btn-primary max-w-fit">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            const isDark = html.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+            if (isDark) {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>';
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>';
+            }
+        }
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('themeIcon').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>';
+        }
+
+        async function fetchLocation() {
+            const locDisplay = document.getElementById('location-display');
+
+            if (!navigator.geolocation) {
+                locDisplay.textContent = "Geolocation not supported.";
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+
+                    try {
+                        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+                        const data = await res.json();
+                        const city = data.address.city || data.address.town || data.address.village || "Unknown Area";
+                        const country = data.address.country || "";
+                        locDisplay.innerHTML = `<span class="font-bold text-slate-800 dark:text-slate-100">📍 Showing jobs near:</span> ${city}, ${country}`;
+                    } catch (e) {
+                        locDisplay.textContent = `📍 Location: Lat ${lat.toFixed(2)}, Lng ${lon.toFixed(2)}`;
+                    }
+                },
+                (error) => {
+                    locDisplay.textContent = "📍 Global Opportunities (Location access denied)";
+                }
+            );
+        }
+        fetchLocation();
+
+        const startBtn = document.getElementById("startBtn");
+        const statusBanner = document.getElementById("statusBanner");
+        const statusText = document.getElementById("statusText");
+        let counter = 1;
+
+        startBtn.addEventListener("click", () => {
+            if (Notification.permission === "granted") {
+                startNotifications();
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        startNotifications();
+                    } else {
+                        alert("Please allow notifications to see real-time alerts.");
+                    }
+                });
+            }
+        });
+
+        function startNotifications() {
+            startBtn.classList.add('hidden');
+            statusBanner.classList.remove('hidden');
+            statusText.textContent = "✅ Real-Time Notifications active! Receiving updates every 10s.";
+
+            showNotification();
+            setInterval(showNotification, 10000);
+        }
+
+        function showNotification() {
+            const notification = new Notification("📢 New Opportunity Update #" + counter, {
+                body: `We just matched a new part-time role for you! (Alert #${counter})`,
+                icon: "https://cdn-icons-png.flaticon.com/512/1827/1827345.png"
+            });
+            counter++;
+            notification.onclick = () => {
+                window.focus();
+            };
+        }
+
+        const modal = document.getElementById('appModal');
+        const form = document.getElementById('appForm');
+        let currentJob = '';
+        let currentCompany = '';
+
+        function openModal(jobTitle, company) {
+            currentJob = jobTitle;
+            currentCompany = company;
+            document.getElementById('modal-job-title').textContent = `Apply for ${jobTitle}`;
+            document.getElementById('modal-company').textContent = company;
+            form.reset();
+            document.getElementById('filePreview').classList.add('hidden');
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        function handleFileChange(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('filePreview');
+
+            if (file) {
+                document.getElementById('fileName').textContent = "📄 " + file.name;
+                const sizeKB = (file.size / 1024).toFixed(1);
+                document.getElementById('fileSize').textContent = sizeKB > 1024 ? `${(sizeKB / 1024).toFixed(1)} MB` : `${sizeKB} KB`;
+                preview.classList.remove('hidden');
+            } else {
+                preview.classList.add('hidden');
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            if (!form.checkValidity()) {
+                alert("Please fill out all required fields correctly.");
+                return;
+            }
+
+            const tableBody = document.getElementById('applications-table-body');
+            const newRow = document.createElement('tr');
+            newRow.className = "hover:bg-amber-50 dark:hover:bg-amber-900/30 transition bg-amber-50/30 dark:bg-amber-900/10";
+
+            const appId = '#APP-' + Math.floor(1000 + Math.random() * 9000);
+
+            newRow.innerHTML = `
+                <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">${appId}</td>
+                <td class="px-6 py-4">
+                    <div class="font-bold text-slate-800 dark:text-slate-100">${currentJob}</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400">${currentCompany}</div>
+                </td>
+                <td class="px-6 py-4"><span class="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 py-1 px-3 rounded-full text-xs font-bold uppercase tracking-wide border border-amber-200 dark:border-amber-800">⏳ Pending</span></td>
+                <td class="px-6 py-4 text-right"><button class="text-rose-600 dark:text-rose-400 hover:text-rose-900 dark:hover:text-rose-300 font-medium">Withdraw</button></td>
+            `;
+
+            tableBody.insertBefore(newRow, tableBody.firstChild);
+
+            closeModal();
+            document.getElementById('applications').scrollIntoView({ behavior: 'smooth' });
+
+            if (Notification.permission === "granted") {
+                new Notification("✅ Application Submitted", { body: `Successfully applied for ${currentJob} at ${currentCompany}.` });
+            }
+        }
+    </script>
+</body>
+
+</html>

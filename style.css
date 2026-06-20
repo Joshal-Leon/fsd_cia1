@@ -1,0 +1,164 @@
+/* Common Format Styles extracted from Tailwind classes */
+
+/* Grid Components */
+.grid-cols-3-layout {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .grid-cols-3-layout {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-cols-3-layout {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.grid-cols-2-layout {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .grid-cols-2-layout {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-cols-2-layout.lg-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.grid-features-layout {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+@media (min-width: 640px) {
+    .grid-features-layout {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Form Inputs */
+.form-input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+    color: #0f172a;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #6366f1;
+    border-color: #6366f1;
+}
+
+.dark .form-input {
+    border-color: #475569;
+    background-color: #334155;
+    color: #f1f5f9;
+}
+
+.dark .form-input:focus {
+    box-shadow: 0 0 0 2px #0f172a, 0 0 0 4px #6366f1;
+}
+
+.form-input:invalid:not(:placeholder-shown) {
+    border-color: #ef4444;
+}
+
+.form-input:valid:not(:placeholder-shown) {
+    border-color: #10b981;
+}
+
+/* Buttons */
+.btn-primary {
+    display: inline-block;
+    width: 100%;
+    background-color: #4f46e5;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0.625rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #4338ca;
+    box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.3);
+}
+
+.btn-gradient {
+    display: inline-block;
+    width: 100%;
+    background: linear-gradient(to right, #4f46e5, #ec4899);
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0.625rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(to right, #4338ca, #db2777);
+    box-shadow: 0 4px 14px 0 rgba(236, 72, 153, 0.3);
+}
+
+/* Job Cards */
+.job-card {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.dark .job-card {
+    background-color: #1e293b;
+    border-color: #334155;
+}
+
+.job-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.job-card-indigo:hover {
+    border-color: #a5b4fc;
+}
+
+.dark .job-card-indigo:hover {
+    border-color: #6366f1;
+}
+
+.job-card-pink:hover {
+    border-color: #f9a8d4;
+}
+
+.dark .job-card-pink:hover {
+    border-color: #ec4899;
+}
