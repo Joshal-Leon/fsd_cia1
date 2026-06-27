@@ -129,7 +129,7 @@ Study-to-Part/
 
 ---
 
-# 📸 Main Modules
+# Main Modules
 
 * Home Page
 * Job Listings Dashboard
