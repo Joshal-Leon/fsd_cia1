@@ -83,7 +83,7 @@ Many students struggle to find suitable part-time jobs and internships that fit 
 
 ---
 
-# 🛠Technologies Used
+# Technologies Used
 
 ## Technologies:
 
