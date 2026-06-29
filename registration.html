@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study-to-Part Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar for a neat look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-gradient-to-br from-indigo-50 to-pink-50 min-h-screen py-10 px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center text-slate-800">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-4xl overflow-hidden flex flex-col max-h-[90vh]">
+        <!-- Header -->
+        <div class="text-center border-b border-slate-100 p-6 sm:p-8 shrink-0">
+            <img src="logo.png" alt="Study-to-Part Logo" class="w-24 sm:w-28 mx-auto mb-4 object-contain"
+                onerror="this.style.display='none'">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-indigo-700 tracking-tight">Study-to-Part</h1>
+            <p class="text-slate-500 mt-2 text-sm sm:text-base">Create your account to get started</p>
+        </div>
+
+        <!-- Form Container (Scrollable) -->
+        <div class="overflow-y-auto flex-grow p-6 sm:p-10">
+            <form id="registerForm">
+                <!-- Register As -->
+                <div class="mb-8">
+                    <h2 class="text-lg font-semibold mb-4 text-slate-700">Register As</h2>
+                    <div class="flex flex-wrap gap-6">
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <input type="radio" name="role" value="Student" checked
+                                class="w-5 h-5 text-indigo-600 focus:ring-indigo-500 border-slate-300">
+                            <span class="text-slate-700 group-hover:text-indigo-600 transition">Student</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <input type="radio" name="role" value="Owner"
+                                class="w-5 h-5 text-indigo-600 focus:ring-indigo-500 border-slate-300">
+                            <span class="text-slate-700 group-hover:text-indigo-600 transition">Owner / Company</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- STUDENT FORM -->
+                <div id="studentForm" class="grid grid-cols-1 md:grid-cols-2 gap-5 transition-all duration-300">
+                    <input id="studentName" type="text" placeholder="Full Name *" required
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input id="studentEmail" type="email" placeholder="Email Address *" required
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input id="studentPassword" type="password" placeholder="Password *" required
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input type="password" placeholder="Confirm Password *" required
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input id="dob" type="date" required
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition text-slate-500">
+                    <select id="gender"
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition bg-white text-slate-500">
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input id="phone" type="tel" placeholder="Phone Number *" required
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input id="college" type="text" placeholder="College Name *" required
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <textarea id="address" placeholder="Residential Address"
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition md:col-span-2 resize-none"
+                        rows="3"></textarea>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-600 mb-2">Upload Id Card</label>
+                        <input id="idCard" type="file" accept="image/*,.pdf"
+                            class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- OWNER FORM -->
+                <div id="ownerForm" class="hidden grid grid-cols-1 md:grid-cols-2 gap-5 transition-all duration-300">
+                    <input id="ownerName" type="text" placeholder="Owner Name *"
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input id="company" type="text" placeholder="Company Name *"
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input id="companyEmail" type="email" placeholder="Company Email *"
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input id="ownerPhone" type="tel" placeholder="Phone Number *"
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input id="ownerPassword" type="password" placeholder="Password *"
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input type="password" placeholder="Confirm Password *"
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input id="website" type="url" placeholder="Company Website (https://...)"
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <input id="regNo" type="text" placeholder="Company Registration No."
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                    <textarea id="companyAddress" placeholder="Company Address *"
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition md:col-span-2 resize-none"
+                        rows="2"></textarea>
+                    <textarea id="description" placeholder="Company Description"
+                        class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition md:col-span-2 resize-none"
+                        rows="3"></textarea>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-600 mb-2">Company Logo</label>
+                        <input id="logo" type="file" accept="image/*"
+                            class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="mt-8">
+                    <label class="flex items-center gap-3 cursor-pointer w-fit">
+                        <input type="checkbox" required
+                            class="w-5 h-5 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500">
+                        <span class="text-sm text-slate-600">I agree to the <a href="#"
+                                class="text-indigo-600 hover:underline">Terms & Conditions</a></span>
+                    </label>
+                </div>
+
+                <button type="submit"
+                    class="w-full mt-8 bg-indigo-600 hover:bg-indigo-700 text-white py-3 sm:py-4 rounded-xl text-lg font-bold shadow-md hover:shadow-lg transition-all active:scale-[0.98]">
+                    Create Account
+                </button>
+            </form>
+        </div>
+
+        <!-- Result Card -->
+        <div id="result" class="hidden border-t border-slate-100 p-6 sm:p-8 bg-white shrink-0"></div>
+    </div>
+
+    <script>
+        // ---------- Form Switching ----------
+        const studentForm = document.getElementById("studentForm");
+        const ownerForm = document.getElementById("ownerForm");
+
+        // Disable fields in hidden form so HTML5 validation works for active form
+        function updateRequiredFields(activeRole) {
+            const studentInputs = document.querySelectorAll('#studentForm input, #studentForm select, #studentForm textarea');
+            const ownerInputs = document.querySelectorAll('#ownerForm input, #ownerForm select, #ownerForm textarea');
+
+            if (activeRole === "Student") {
+                ownerInputs.forEach(input => input.disabled = true);
+                studentInputs.forEach(input => input.disabled = false);
+            } else {
+                studentInputs.forEach(input => input.disabled = true);
+                ownerInputs.forEach(input => input.disabled = false);
+            }
+        }
+
+        updateRequiredFields("Student");
+
+        document.querySelectorAll("input[name='role']").forEach((radio) => {
+            radio.addEventListener("change", () => {
+                if (radio.value === "Student" && radio.checked) {
+                    studentForm.classList.remove("hidden");
+                    ownerForm.classList.add("hidden");
+                    updateRequiredFields("Student");
+                } else if (radio.value === "Owner" && radio.checked) {
+                    ownerForm.classList.remove("hidden");
+                    studentForm.classList.add("hidden");
+                    updateRequiredFields("Owner");
+                }
+            });
+        });
+
+        // ---------- Display Card (Arrow Function) ----------
+        const displayCard = (user) => {
+            const result = document.getElementById("result");
+            result.classList.remove("hidden");
+
+            result.innerHTML = `
+                <div class="bg-indigo-50 border border-indigo-100 rounded-xl shadow-sm p-5 sm:p-6">
+                    <h2 class="text-lg sm:text-xl font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Registration Details
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700">
+                        ${Object.entries(user).map(([key, value]) =>
+                            value ? `<div class="bg-white p-2 sm:p-3 rounded border border-slate-100"><span class="font-semibold text-slate-900 block mb-1">${key}</span> ${value}</div>` : ''
+                        ).join("")}
+                    </div>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                result.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, 100);
+        };
+
+        // ---------- Form Submit ----------
+        const form = document.getElementById("registerForm");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const role = document.querySelector("input[name='role']:checked").value;
+            let user = {};
+
+            // Storage API Check
+            let allRegistrations = JSON.parse(localStorage.getItem("allRegistrations")) || [];
+            let currentEmail = role === "Student" ? document.getElementById('studentEmail').value : document.getElementById('companyEmail').value;
+
+            if (allRegistrations.some(u => u.Email === currentEmail)) {
+                alert("An account with this email is already registered!");
+                return; // Prevent registration
+            }
+
+            if (role === "Student") {
+                user = {
+                    "Role": "Student",
+                    "Name": document.getElementById('studentName').value,
+                    "Email": document.getElementById('studentEmail').value,
+                    "DOB": document.getElementById('dob').value,
+                    "Gender": document.getElementById('gender').value,
+                    "Phone": document.getElementById('phone').value,
+                    "College": document.getElementById('college').value,
+                    "Address": document.getElementById('address').value,
+                    "Id Card": document.getElementById('idCard').files.length ? document.getElementById('idCard').files[0].name : "Not Uploaded"
+                };
+            } else {
+                user = {
+                    "Role": "Owner",
+                    "Owner Name": document.getElementById('ownerName').value,
+                    "Company": document.getElementById('company').value,
+                    "Email": document.getElementById('companyEmail').value,
+                    "Phone": document.getElementById('ownerPhone').value,
+                    "Website": document.getElementById('website').value,
+                    "Address": document.getElementById('companyAddress').value,
+                    "Description": document.getElementById('description').value,
+                    "Logo": document.getElementById('logo').files.length ? document.getElementById('logo').files[0].name : "Not Uploaded"
+                };
+            }
+
+            // Save to global list and update last registered
+            allRegistrations.push(user);
+            localStorage.setItem("allRegistrations", JSON.stringify(allRegistrations));
+            localStorage.setItem("lastRegistration", JSON.stringify(user));
+
+            displayCard(user);
+            
+            setTimeout(() => {
+                alert("Registration Successful!");
+                form.reset();
+                document.querySelector("input[name='role'][value='Student']").checked = true;
+                studentForm.classList.remove("hidden");
+                ownerForm.classList.add("hidden");
+                updateRequiredFields("Student");
+            }, 300);
+        });
+
+
+    </script>
+</body>
+
+</html>
